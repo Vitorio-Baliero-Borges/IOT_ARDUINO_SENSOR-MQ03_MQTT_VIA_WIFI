@@ -42,3 +42,4 @@ Este projeto utiliza o Arduino, o sensor MQ-3 e o protocolo MQTT para monitorar 
 - Ativação do buzzer quando o nível de álcool ultrapassa 0.80.
 
 ## Estrutura do Repositório
+sensor-arduino-mqtt/ ├── README.md ├── sensor_arduino_mqtt.ino ├── imagens/ │ ├── esquema_circuito.png │ ├── montagem_prototipo.jpg ├── docs/ │ ├── node_red_flow.json │ ├── artigo_cientifico.pdf
