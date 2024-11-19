@@ -9,9 +9,9 @@
 #define MQ3_5V_PIN_AOUT A0
 
 // Wi-Fi and MQTT Settings
-const char* ssid = "Perola";          // Insira o nome da sua rede Wi-Fi
-const char* password = "Tg9p.c2oh.";  // Insira a senha da sua rede Wi-Fi
-const char* mqtt_server = "192.168.15.6";  // Insira o endereço IP do broker MQTT (use o IP do seu computador)
+const char* ssid = "xxxxxxx";          // Insira o nome da sua rede Wi-Fi
+const char* password = "xxxxxxx";  // Insira a senha da sua rede Wi-Fi
+const char* mqtt_server = "xxxxxxxx";  // Insira o endereço IP do broker MQTT (use o IP do seu computador)
 const char* mqtt_topic = "sensor/alcool";  // Tópico MQTT para o sensor de álcool
 
 WiFiClient espClient;
