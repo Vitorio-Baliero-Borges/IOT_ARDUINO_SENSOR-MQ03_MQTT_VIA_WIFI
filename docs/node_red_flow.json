@@ -1,1 +1,212 @@
-
+[
+    {
+        "id": "0be9d780d162563d",
+        "type": "tab",
+        "label": "Fluxo 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c57a9fc752984d52",
+        "type": "mqtt in",
+        "z": "0be9d780d162563d",
+        "name": "",
+        "topic": "sensor/alcool",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "de3b71e5275fd5b4",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 410,
+        "y": 300,
+        "wires": [
+            [
+                "d457c2aa6f3f8418",
+                "3f92ddbba5dabd03",
+                "961591a5d3839b1c"
+            ]
+        ]
+    },
+    {
+        "id": "d457c2aa6f3f8418",
+        "type": "ui_gauge",
+        "z": "0be9d780d162563d",
+        "name": "",
+        "group": "db263d7fe5a5c574",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Concentração de Álcool",
+        "label": "v",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "5",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "1,5",
+        "seg2": "2,5",
+        "diff": false,
+        "className": "",
+        "x": 890,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "3f92ddbba5dabd03",
+        "type": "debug",
+        "z": "0be9d780d162563d",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 600,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "d9f0a13902e3ecf1",
+        "type": "function",
+        "z": "0be9d780d162563d",
+        "name": "Histórico",
+        "func": "// Inicializa o contexto se não estiver feito\nlet history = context.get('history') || [];\n\n// Adiciona o novo valor ao histórico\nhistory.push({\n    timestamp: new Date().toLocaleTimeString(),\n    value: msg.payload\n});\n\n// Mantém apenas os últimos 50 valores (por exemplo)\nif (history.length > 50) {\n    history.shift();\n}\n\n// Armazena de volta no contexto\ncontext.set('history', history);\n\n// Configura a mensagem de saída\nmsg.payload = {\n    labels: history.map(entry => entry.timestamp),\n    series: [history.map(entry => entry.value)]\n};\n\n// Envia para o próximo nó\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 840,
+        "y": 480,
+        "wires": [
+            [
+                "e09a7a967a4d072c"
+            ]
+        ]
+    },
+    {
+        "id": "961591a5d3839b1c",
+        "type": "ui_chart",
+        "z": "0be9d780d162563d",
+        "name": "",
+        "group": "db263d7fe5a5c574",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "Histórico Nível de Álcool (%)",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "5",
+        "removeOlder": "30",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "1",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": true,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 880,
+        "y": 260,
+        "wires": [
+            [
+                "e09a7a967a4d072c",
+                "d9f0a13902e3ecf1"
+            ]
+        ]
+    },
+    {
+        "id": "e09a7a967a4d072c",
+        "type": "debug",
+        "z": "0be9d780d162563d",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1400,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "de3b71e5275fd5b4",
+        "type": "mqtt-broker",
+        "name": "sensor/alcool",
+        "broker": "192.000.00.0",  *ip broker mqtt , inserir aqui. 
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "db263d7fe5a5c574",
+        "type": "ui_group",
+        "name": "Histórico de Nível de Álcool",
+        "tab": "776a0c0ab633a813",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "776a0c0ab633a813",
+        "type": "ui_tab",
+        "name": "Dashboard Monitoramento de Níveis de Alcool",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
