@@ -70,10 +70,19 @@ Este projeto utiliza o Arduino, o sensor MQ-3 e o protocolo MQTT para monitorar 
 
 ---
 
+## 🚨 Configuração do Firewall
+
+Para garantir a comunicação MQTT, libere a porta **1883** no firewall do seu computador:
+1. Acesse o Painel de Controle > Sistema e Segurança > Firewall do Windows Defender > Configurações Avançadas.
+2. Crie uma **Nova Regra de Entrada** e configure para a porta **1883**.
+3. Repita o processo para criar uma **Nova Regra de Saída** para a mesma porta.
+
+---
+
 ## 🎥 Vídeo de Demonstração
 
 Confira o vídeo de demonstração do projeto em funcionamento no YouTube:
-[**Demonstração Sensor Arduino MQTT**](https://www.youtube.com/watch?v=SEU_VIDEO_LINK)
+[**Demonstração Sensor Arduino MQTT**](https://youtu.be/QlroZ7wxd2k)
 
 ---
 
